@@ -1,8 +1,4 @@
-package com.Apolo.ems.Controller;    
-
-
-
-
+package com.Apolo.ems.Controller;   
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,8 +13,6 @@ import com.Apolo.ems.Entity.Employee;
 import com.Apolo.ems.Service.EmpService;
 
 import jakarta.servlet.http.HttpSession;
-
-
 @Controller
 public class EmpController {
 
@@ -26,8 +20,8 @@ public class EmpController {
 	private EmpService service;
 
 	@GetMapping("/")
-	public String home(Model m) {
-		return findPaginated(0, m);
+	public String home(Model model) {
+		return findPaginated(0, model);
 	}
 
 	@GetMapping("/addemp")
@@ -36,16 +30,16 @@ public class EmpController {
 	}
 
 	@PostMapping("/register")
-	public String empRegister(@ModelAttribute Employee e, HttpSession session) {
-		service.addEmp(e);
+	public String empRegister(@ModelAttribute Employee entity, HttpSession session) {
+		service.addEmp(entity);
 		session.setAttribute("msg", "Emplyoee Added Sucessfully..");
 		return "redirect:/";
 	}
 
 	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable int id, Model m) {
+	public String edit(@PathVariable int id, Model model) {
 		Employee e = service.getEMpById(id);
-		m.addAttribute("emp", e);
+		model.addAttribute("emp", e);
 		return "edit";
 	}
 
