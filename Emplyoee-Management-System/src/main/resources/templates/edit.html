@@ -50,7 +50,7 @@
 					<div class="card-body">
 						<h4 class="text-center text-primary">Edit Emp</h4>
 
-						<form th:action="@{/update}" method="post" th:object="${emp}">
+						<form action="@{/update}" method="post" th:object="${emp}">
 
 							<input type="hidden" th:value="${emp.id}" name="id">
 
